@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Signin Template for Bootstrap</title>
+  <title>BSM Awards</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
@@ -26,9 +26,9 @@
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">      
     <h3>
-    <p class="navbar-text navbar-fixed-top" align="center">
+    <p style="color:white" class="navbar-text navbar-fixed-top" align="center">
       <img src='img/bsm_logo_glow.png' style="height: 25px; padding-top:1px; padding-bottom:5px; padding-right: 5px;" align="center"/> 
-      BSM Awards
+      BSM Employee Awards 2013
     </p>
     </h3>
   </nav>
@@ -40,7 +40,7 @@
     </p> -->
 
     <form id='login_form' class="form-signin" role="form">
-      <h2 class="form-signin-heading">Please sign in</h2>
+      <h3 style="padding-bottom:35px; padding-top:25px" class="form-signin-heading">Please sign in using your BSM email and password</h2>
       <div class='error' id='ajax_error' style="display: none;margin: 0px;font-style: italic;font-size: 14px;color: rgb(146,146,146);padding: 20px;">        
       </div>
       <input id='login_email' type="text" class="form-control" placeholder="Email address" required autofocus>
@@ -54,7 +54,7 @@
         <input id='txt_best_emp' type="text" class="form-control">
       </div> -->
       <div class="input-group">
-        <span class="input-group-addon">Best employee</span>
+        <span class="input-group-addon">Best Employee 2013</span>
         <input id='txt_best_emp' type="text" class="form-control" placeholder="">
       </div>
       <div style="float:right; padding-top:5px">
@@ -67,9 +67,11 @@
 
     <div id="question2" class="form-signin">
       <div class="input-group">
-        <span class="input-group-addon">Best new comer</span>
-        <input id='txt_new_comer' type="text" class="form-control" placeholder="">
+        <span class="input-group-addon">Best New Comer 2013</span>
+        <!-- <input id='txt_new_comer' type="text" class="form-control" placeholder=""> -->
+        <span id='sel_comer'></span>
       </div>
+        <span style="font-size:12px; color:#8B8B8B">*Joined in the year 2013</span>
       <div style="float:right; padding-top:5px">
         <!-- <input type="button" value="Next" onclick="show_q2()"> -->
         <button type="button" class="btn btn-default"  onclick="show_q1()">
@@ -83,8 +85,9 @@
 
     <div id="question3" class="form-signin">
       <div class="input-group">
-        <span class="input-group-addon">Best trainee</span>
-        <input id='txt_new_trainee' type="text" class="form-control" placeholder="">
+        <span class="input-group-addon">Best Trainee 2013</span>
+        <!-- <input id='txt_new_trainee' type="text" class="form-control" placeholder=""> -->
+        <span id='sel_traniee'></span>
       </div>
       <div style="float:right; padding-top:5px">
         <!-- <input type="button" value="Next" onclick="show_q2()"> -->
@@ -99,8 +102,20 @@
 
     <div id="question4" class="form-signin">
       <div class="input-group">
-        <span class="input-group-addon">Best consultant</span>
-        <input id='txt_new_consultant' type="text" class="form-control" placeholder="">
+        <span class="input-group-addon">Best Consultant 2013</span>
+        <!-- <input id='txt_new_consultant' type="text" class="form-control" placeholder=""> -->
+        <select id='txt_new_consultant' class="form-control"> 
+          <option>Select</option>
+          <option>Nityananda Patra</option>
+          <option>Aarathy Antony</option>
+          <option>Sayoojya</option>
+          <option>Vidya sagar</option>
+          <option>Neena Alotious</option>
+          <option>Vineesh Chenthamarakshan</option>
+          <option>Prasad C</option>
+          <option>Omkar Sawant</option>
+          <option>Mangesh Pille</option>
+        </select>
       </div>
       <div style="float:right; padding-top:5px">
         <!-- <input type="button" value="Next" onclick="show_q2()"> -->
@@ -114,13 +129,52 @@
     </div>
 
     <div id="end" class="form-signin">
-      <span class="question"><h3>Please review your polls</h3></span>
-      <h4>Best Employee <span id='lbl_best_emp' class="label label-success"></span></h4>
-      <h4>Best New Comer <span id='lbl_new_comer' class="label label-success"></span></h4>
-      <h4>Best Trainee <span id='lbl_best_Trainee' class="label label-success"></span></h4>
-      <h4>Best Consultant <span id='lbl_best_const' class="label label-success"></span></h4>
-      <span class="question"><h3>Once you submit your results you wont be able to change it</h3></span>      
-      <div>
+      <span class="question"><h3>Please review your selection</h3></span>
+      <h4>
+      <table>
+        <tr>
+          <td style="padding-right: 40px; padding-bottom: 10px; padding-top: 10px;">
+          Best Employee, 2013
+          </td>
+          <td>
+          <span id='lbl_best_emp' class="label label-success"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding-right: 40px; padding-bottom: 10px; padding-top: 10px;">
+          Best New Comer, 2013
+          </td>
+          <td>
+          <span id='lbl_new_comer' class="label label-success"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding-right: 40px; padding-bottom: 10px; padding-top: 10px;">
+          Best Trainee, 2013
+          </td>
+          <td>
+          <span id='lbl_best_Trainee' class="label label-success"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding-right: 40px; padding-bottom: 10px; padding-top: 10px;">
+          Best Consultant, 2013
+          </td>
+          <td>
+          <span id='lbl_best_const' class="label label-success"></span>
+          </td>
+        </tr>
+      </table>
+      </h4>
+      <!-- <h4>Best Employee 2013 <span id='lbl_best_emp' class="label label-success"></span></h4>
+      <h4>Best New Comer 2013 <span id='lbl_new_comer' class="label label-success"></span></h4>
+      <h4>Best Trainee 2013 <span id='lbl_best_Trainee' class="label label-success"></span></h4>
+      <h4>Best Consultant 2013 <span id='lbl_best_const' class="label label-success"></span></h4> -->
+      <span class="question"><h4>Once you submit your results you wont be able to change it</h4></span>      
+      <div style="padding-bottom:20px">
         <button type="button" class="btn btn-default"  onclick="show_q4()">
           <span class="glyphicon glyphicon-chevron-left"></span> Previous
         </button>

@@ -136,8 +136,8 @@ $('#login_form').submit(function(){
         type: "post",
         data: form_data,
         beforeSend: function() {
-            $(".spinner").css('display','inline');
-            $(".spinner").center();
+            $(".spinner_index").css('display','inline');
+            $(".spinner_index").center();
         },
 
         success : function(response) {
@@ -156,33 +156,37 @@ $('#login_form').submit(function(){
                         results: function() {}
                     }
                 });
-                $("#txt_new_comer").autocomplete({
-                    source: new_comer,
-                    minLength: 1,
-                    matchFromStart: false,
-                    messages: {
-                        noResults: '',
-                        results: function() {}
-                    }
-                });
-                $("#txt_new_trainee").autocomplete({
-                    source: best_traniee,
-                    minLength: 1,
-                    matchFromStart: false,
-                    messages: {
-                        noResults: '',
-                        results: function() {}
-                    }
-                });
-                $("#txt_new_consultant").autocomplete({
-                    source: best_consultant,
-                    minLength: 1,
-                    matchFromStart: false,
-                    messages: {
-                        noResults: '',
-                        results: function() {}
-                    }
-                });
+                $('#sel_comer').html(sel_comer);
+                $('#txt_new_comer').select();
+                // $("#txt_new_comer").autocomplete({
+                //     source: new_comer,
+                //     minLength: 1,
+                //     matchFromStart: false,
+                //     messages: {
+                //         noResults: '',
+                //         results: function() {}
+                //     }
+                // });
+                $('#sel_traniee').html(sel_traniee);
+                $('#txt_new_trainee').select();
+                // $("#txt_new_trainee").autocomplete({
+                //     source: best_traniee,
+                //     minLength: 1,
+                //     matchFromStart: false,
+                //     messages: {
+                //         noResults: '',
+                //         results: function() {}
+                //     }
+                // });
+                // $("#txt_new_consultant").autocomplete({
+                //     source: best_consultant,
+                //     minLength: 1,
+                //     matchFromStart: false,
+                //     messages: {
+                //         noResults: '',
+                //         results: function() {}
+                //     }
+                // });
 
             } else if(response == 'Entered') {
                 login_entered();
@@ -223,29 +227,32 @@ function show_end(){
     hide_all();
     $('#end').show();
     jQuery('#lbl_best_emp').text($('#txt_best_emp').val())
-    jQuery('#lbl_new_comer').text($('#txt_new_comer').val())
-    jQuery('#lbl_best_const').text($('#txt_new_consultant').val())
-    jQuery('#lbl_best_Trainee').text($('#txt_new_trainee').val())
+    if($('#txt_new_comer').val()!='Select')
+        jQuery('#lbl_new_comer').text($('#txt_new_comer').val())
+    if($('#txt_new_consultant').val()!='Select')
+        jQuery('#lbl_best_const').text($('#txt_new_consultant').val())
+    if($('#txt_new_trainee').val()!='Select')
+        jQuery('#lbl_best_Trainee').text($('#txt_new_trainee').val())
 }
 
 function save_results() {
     req = $.ajax({
         url: 'https://www.getvesseltracker.com/awards_bsm/save_award.php?' +
         'username='+ $('#login_email').val() +
-        '&result1='+ $('#txt_best_emp').val() +
-        '&result2='+ $('#txt_new_comer').val() +
-        '&result3='+ $('#txt_new_consultant').val() +
-        '&result4=' + $('#txt_new_trainee').val(),
+        '&result1='+ $('#lbl_best_emp').text() +
+        '&result2='+ $('#lbl_new_comer').text() +
+        '&result3='+ $('#lbl_best_const').text() +
+        '&result4=' + $('#lbl_best_Trainee').text(),
         beforeSend: function() {
-            $(".spinner").css('display','block');
-            $(".spinner").css('margin','auto');
+            $(".spinner_index").css('display','block');
+            $(".spinner_index").css('margin','auto');
         },
 
         success : function(results) {
             console.log(results);
             if (results == null) {
                 alert('There was an error. Kindly try again in a few minutes.\n-vineeth.vijayan@bs-shipmanagment.com');
-                $('.spinner').hide();
+                $('.spinner_index').hide();
             } else {
                 hide_all();
                 $('#thankyou').show();
@@ -261,6 +268,9 @@ var best_emp = new Array();
 var new_comer = new Array();
 var best_traniee = new Array();
 var best_consultant = new Array();
+
+var sel_traniee;
+var sel_comer;
 
 function load_emp(){
     var username = $('#login_email').val().split('@')[0];
@@ -357,15 +367,15 @@ function load_emp(){
     if(username != 'vinu.abraham') best_emp.push('Vinu Abraham');
     if(username != 'vysakh.mohan') best_emp.push('Vysakh Mohan');
 
-    best_consultant.push('Nityananda Patra');
-    best_consultant.push('Aarathy Antony');
-    best_consultant.push('Sayoojya');
-    best_consultant.push('Vidyasagar');
-    best_consultant.push('Neena Alotious');
-    best_consultant.push('Vineesh Chenthamarakshan');
-    best_consultant.push('Prasad C');
-    best_consultant.push('Omkar Sawant');
-    best_consultant.push('Mangesh Pille');
+    // best_consultant.push('Nityananda Patra');
+    // best_consultant.push('Aarathy Antony');
+    // best_consultant.push('Sayoojya');
+    // best_consultant.push('Vidyasagar');
+    // best_consultant.push('Neena Alotious');
+    // best_consultant.push('Vineesh Chenthamarakshan');
+    // best_consultant.push('Prasad C');
+    // best_consultant.push('Omkar Sawant');
+    // best_consultant.push('Mangesh Pille');
 
     if(username != 'abdul.wahab') best_traniee.push('Abdul Wahab');
     if(username != 'fathimabeevi.rasheed') best_traniee.push('Fathimabeevi A. Rasheed');
@@ -377,6 +387,12 @@ function load_emp(){
     if(username != 'raamkumar.vijayakuma') best_traniee.push('Raamkumar Vijayakumar');
     if(username != 'renjana.ragavan') best_traniee.push('Renjana M. Ragavan');
     if(username != 'tijoy.varghese') best_traniee.push('Tijoy Mathew Varghese');
+
+    sel_traniee ='<select id="txt_new_trainee" class="form-control"><option>Select</option>';
+    for (var i = 0; i <= best_traniee.length - 1; i++) {
+        sel_traniee+='<option>' + best_traniee[i] + '</option>';
+    };
+    sel_traniee +='</select>';
 
     if(username != 'aansen.varkey') new_comer.push('Aansen Olakkattil Varkey');
     if(username != 'ajee.kurian') new_comer.push('Ajee M Kurian');
@@ -398,4 +414,9 @@ function load_emp(){
     if(username != 'vijeesh.vijayan') new_comer.push('Vijeesh Vijayan');
     if(username != 'vineeth.vijayan') new_comer.push('Vineeth Vijayan');
 
+    sel_comer ='<select id="txt_new_comer" class="form-control"><option>Select</option>';
+    for (var i = 0 ; i <= new_comer.length - 1; i++) {
+        sel_comer+='<option>' + new_comer[i] + '</option>';
+    };
+    sel_comer +='</select>';
 }
