@@ -147,15 +147,18 @@ $('#login_form').submit(function(){
 
                 load_emp();
 
-                $("#txt_best_emp").autocomplete({
-                    source: best_emp,
-                    minLength: 1,
-                    matchFromStart: false,
-                    messages: {
-                        noResults: '',
-                        results: function() {}
-                    }
-                });
+                $('#sel_emp').html(sel_emp);
+                $('#txt_best_emp').select();
+
+                // $("#txt_best_emp").autocomplete({
+                //     source: best_emp,
+                //     minLength: 1,
+                //     matchFromStart: false,
+                //     messages: {
+                //         noResults: '',
+                //         results: function() {}
+                //     }
+                // });
                 $('#sel_comer').html(sel_comer);
                 $('#txt_new_comer').select();
                 // $("#txt_new_comer").autocomplete({
@@ -226,7 +229,8 @@ function show_q4(){
 function show_end(){
     hide_all();
     $('#end').show();
-    jQuery('#lbl_best_emp').text($('#txt_best_emp').val())
+    if($('#txt_best_emp').val()!='Select')
+        jQuery('#lbl_best_emp').text($('#txt_best_emp').val())
     if($('#txt_new_comer').val()!='Select')
         jQuery('#lbl_new_comer').text($('#txt_new_comer').val())
     if($('#txt_new_consultant').val()!='Select')
@@ -269,6 +273,7 @@ var new_comer = new Array();
 var best_traniee = new Array();
 var best_consultant = new Array();
 
+var sel_emp;
 var sel_traniee;
 var sel_comer;
 
@@ -333,10 +338,9 @@ function load_emp(){
     if(username != 'rio.issac') best_emp.push('Rio Issac');
     if(username != 'saiprasad.narayanan') best_emp.push('Saiprasad Narayanan');
     if(username != 'sandeep.ramachandran') best_emp.push('Sandeep Ramachandran');
-    if(username != 'sankar.ragavan') best_emp.push('Sankar Ragavan');
     if(username != 'santosh.chankane') best_emp.push('Santosh Chankane');
     if(username != 'saravanan.subramania') best_emp.push('Saravanan Subramanian');
-    if(username != 'sourabh.trivedi') best_emp.push('Saurabh Trivedi');
+    if(username != 'sourabh.trivedi') best_emp.push('Sourabh Trivedi');
     if(username != 'shabnam.ahmed') best_emp.push('Shabnam Ahmed');
     if(username != 'shahana.muhammed') best_emp.push('Shahana Muhammed');
     if(username != 'shalini.prasad') best_emp.push('Shalini Prasad');
@@ -366,6 +370,12 @@ function load_emp(){
     if(username != 'vineeth.vijayan') best_emp.push('Vineeth Vijayan');
     if(username != 'vinu.abraham') best_emp.push('Vinu Abraham');
     if(username != 'vysakh.mohan') best_emp.push('Vysakh Mohan');
+
+    sel_emp ='<select id="txt_best_emp" class="form-control"><option>Select</option>';
+    for (var i = 0; i <= best_emp.length - 1; i++) {
+        sel_emp+='<option>' + best_emp[i] + '</option>';
+    };
+    sel_emp +='</select>';
 
     // best_consultant.push('Nityananda Patra');
     // best_consultant.push('Aarathy Antony');
